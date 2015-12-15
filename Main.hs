@@ -8,10 +8,13 @@ foreign import javascript unsafe "js_callback_($1)"
 foreign import javascript unsafe "js_callback_ = $1"
     set_callback :: Callback a -> IO ()
 
+sayHello :: String -> IO ()
+sayHello name = print $ "hello, " ++ name
+
 main = do
     callback <- syncCallback1 ContinueAsync $ \o -> do
         Just str <- fromJSVal o
-        putStrLn $ unpack str
+        sayHello $ unpack str
 
     set_callback callback
-    call_callback $ pack "hello world"
+    call_callback $ pack "world"
