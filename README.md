@@ -8,17 +8,8 @@ First, compile Main.hs using ghcjs:
 
     ghcjs Main.hs
 
-next, run a server in Main.jsexe :
+then, to run the resulting javascript under node: 
 
-    cd Main.jsexe
-    python -m SimpleHTTPServer
-    
-finally, view the results in your brower.
-
-If you just want to see the results, follow this link:
-https://dc25.github.io/ghcjsCallback
-
-If you want to see a slightly modified version that runs under node.js,
-check out the nodejs branch.
+    node Main.jsexe/all.js
 
 

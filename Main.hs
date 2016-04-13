@@ -17,7 +17,12 @@ foreign import javascript unsafe "js_callback_ = $1"
 foreign import javascript unsafe "js_callback_($1)" 
     test_callback :: JSString -> IO ()
 
+foreign import javascript unsafe "var tc=require('./tc'); tc.tcb()" 
+    test_external_callback :: IO ()
+
 main = do
     callback <- syncCallback1 ContinueAsync sayHello'
     set_callback callback
     test_callback $ pack "world"
+    test_external_callback
+    putStr "" -- without this, program exits before buffer is flushed. I don't know why.

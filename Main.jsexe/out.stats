@@ -1,12 +1,12 @@
 code size summary per package:
 
-base:                    280641
+base:                    281064
 deeps_IA8DgGbqfWcHYE0vChdRyn:841
 ghc-prim:                3321
 ghcjs_B7KLFJ07Vte3zPHAgRIBTb:10202
 ghcjs_Kc7TQ2cEDg1F5e5cgY2Vuk:7623
 integer-gmp:             1925
-main:                    2384
+main:                    2985
 
 
 code size per module:
@@ -40,7 +40,7 @@ base
     GHC.IO.Handle:                      416
     GHC.IO.Handle.FD:                   6981
     GHC.IO.Handle.Internals:            34931
-    GHC.IO.Handle.Text:                 15761
+    GHC.IO.Handle.Text:                 15911
     GHC.IO.Handle.Types:                3834
     GHC.Int:                            802
     GHC.List:                           1631
@@ -51,7 +51,7 @@ base
     GHC.Storable:                       1084
     GHC.TopHandler:                     10349
     GHC.Word:                           350
-    System.IO:                          407
+    System.IO:                          680
     System.Posix.Internals:             16075
 
 deeps_IA8DgGbqfWcHYE0vChdRyn
@@ -79,9 +79,9 @@ integer-gmp
     GHC.Integer.Type:                   1753
 
 main
-    Main:                               2384
+    Main:                               2985
 
 
 
-packed metadata: 67457
+packed metadata: 67837
 
