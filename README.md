@@ -15,4 +15,10 @@ next, run a server in Main.jsexe :
     
 finally, view the results in your brower.
 
+If you just want to see the results, follow the link below:
+https://dc25.github.io/ghcjsCallback
+
+If you want to see a slightly modified version that runs under node.js,
+look at the nodejs branch.
+
 
