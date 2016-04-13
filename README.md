@@ -12,4 +12,5 @@ then, to run the resulting javascript under node:
 
     node Main.jsexe/all.js
 
+You are currently looking at the nodejs branch.  To view code that runs in the browser, switch to the master branch.
 
