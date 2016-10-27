@@ -1,23 +1,21 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 import GHCJS.Marshal(fromJSVal)
-import GHCJS.Foreign.Callback (Callback, syncCallback1, OnBlocked(ContinueAsync))
+import GHCJS.Foreign.Callback (Callback, syncCallback1')
 import Data.JSString (JSString, unpack, pack)
-import GHCJS.Types (JSVal)
+import GHCJS.Types (JSVal, jsval)
+import JavaScript.Object (Object, create, setProp)
+import Data.Maybe (fromJust)
 
-sayHello :: String -> IO ()
-sayHello name = print $ "hello, " ++ name
+foreign import javascript unsafe "helloWorld = $1"
+    set_callback :: Callback (JSVal -> IO JSVal) -> IO ()
 
-sayHello' :: JSVal -> IO ()
-sayHello' jsval = do
-    Just str <- fromJSVal jsval
-    sayHello $ unpack str
-
-foreign import javascript unsafe "js_callback_ = $1"
-    set_callback :: Callback a -> IO ()
-
-foreign import javascript unsafe "js_callback_($1)" 
-    test_callback :: JSString -> IO ()
-
+main :: IO ()
 main = do
-    callback <- syncCallback1 ContinueAsync sayHello'
+    callback <- syncCallback1' $ \jv -> do
+      (str :: String) <- unpack . fromJust <$> fromJSVal jv
+      (o :: Object) <- create
+      setProp (pack "helloworld" :: JSString) (jsval . pack $ "hello, " ++ str) o
+      return $ jsval o
+    -- when all.js is loaded, it will defined the function `helloWorld` globally in jsLand
     set_callback callback
-    test_callback $ pack "world"
