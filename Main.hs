@@ -10,6 +10,9 @@ import Data.Maybe (fromJust)
 foreign import javascript unsafe "helloWorld = $1"
     set_callback :: Callback (JSVal -> IO JSVal) -> IO ()
 
+foreign import javascript unsafe "helloWorld($1)"
+    test_callback :: JSString -> IO JSVal
+
 main :: IO ()
 main = do
     callback <- syncCallback1' $ \jv -> do
@@ -19,3 +22,8 @@ main = do
       return $ jsval o
     -- when all.js is loaded, it will defined the function `helloWorld` globally in jsLand
     set_callback callback
+    cbRes <- test_callback $ (pack "world" :: JSString)
+    (cbResStr :: String) <- unpack . fromJust <$> fromJSVal cbRes
+    print cbResStr
+    return ()
+
